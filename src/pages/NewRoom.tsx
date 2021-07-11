@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { FormEvent, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
@@ -6,11 +7,33 @@ import logoImg from '../assets/images/logo.svg';
 import '../styles/auth.scss';
 import { Button } from '../components/Button';
 import { useAuth } from '../hooks/useAuth';
+import { database } from '../services/firebase';
 // webpack: Module Bundler(pega o arquivo svg(exemplo) no import e já vem com configurações predefinidas)
 
 export function NewRoom() {
+    const history = useHistory();
 
-    const {user} = useAuth();
+    const [newRoom, setNewRoom] = useState('');
+
+    const {user} = useAuth(); 
+
+    async function handleCreateRoom(event: FormEvent){
+        event.preventDefault();
+
+        if (newRoom.trim() === ''){
+            return;
+        }
+
+        const roomRef = database.ref('rooms');
+        // Referencia ao BD do firebase
+
+        const firebaseRoom = await roomRef.push({
+            title: newRoom,
+            authorId: user?.id
+        });
+
+        history.push(`/rooms/${firebaseRoom.key}`);
+    }
 
     return(
         <div className="page-auth">
@@ -23,12 +46,14 @@ export function NewRoom() {
                 <div className="main-content">
                     <img src={logoImg} alt="LetMeAsk" />
                     <h2>Criar uma nova sala</h2>
-                    <form>
+                    <form onSubmit={handleCreateRoom}>
                         <input 
                         type="text" 
                         placeholder="Nome da Sala"
                         name="" 
-                        id="" />
+                        id=""
+                        onChange={(event) => setNewRoom(event.target.value)}
+                        value={newRoom} />
 
                         <Button type="submit">
                             Criar Sala
