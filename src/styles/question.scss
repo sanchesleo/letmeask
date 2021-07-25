@@ -1,0 +1,65 @@
+.question{
+    background: #fefefe;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    padding: 1.7rem;
+    margin-top: 1rem;
+
+    & + .question{
+        margin-top: 0.5rem;
+    }
+    //Question seguida(+) de outra question
+
+    p{
+        color: #29292e;
+    }
+
+    footer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1.6rem;
+
+        .user-info{
+            display: flex;
+            align-items: center;
+
+            img{
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+            }
+
+            span{
+                margin-left: 0.5rem;
+                color: #737380;
+                font-size: 0.8rem;
+            }
+        }
+
+        button{
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            transition: filter .2;
+            &.like-button{
+                display: flex;
+                align-items: flex-end;
+                color: #737380;
+                gap: 0.5rem; 
+
+                &:hover{
+                    filter: brightness(0.6);
+                }
+
+                &.liked{
+                    color: #835afd;
+
+                    svg path{
+                        stroke: #835afd;
+                    }
+                }
+            }
+        }
+    }
+}
