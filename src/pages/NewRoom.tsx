@@ -5,7 +5,7 @@ import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 
 import '../styles/auth.scss';
-import { Button } from '../components/Button';
+import { Button } from '../components/button';
 import { useAuth } from '../hooks/useAuth';
 import { database } from '../services/firebase';
 // webpack: Module Bundler(pega o arquivo svg(exemplo) no import e já vem com configurações predefinidas)
