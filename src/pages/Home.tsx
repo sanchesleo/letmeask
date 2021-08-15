@@ -3,7 +3,7 @@ import logoImg from '../assets/images/logo.svg';
 import googleIconImg from '../assets/images/google-icon.svg';
 
 import '../styles/auth.scss';
-import { Button } from '../components/Button';
+import { Button } from '../components/button';
 // webpack: Module Bundler(pega o arquivo svg(exemplo) no import e já vem com configurações predefinidas)
 
 
